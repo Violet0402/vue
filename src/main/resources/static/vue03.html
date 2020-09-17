@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue01</title>
+
+</head>
+<body>
+    <div id="app">
+        <span v-text="message"></span><br>   <!--v-text会将标签中的数据给覆盖,尽可能使用该表达式可以避免插值闪烁，网络较差的时候会出现-->
+        <span v-html="message"></span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el : '#app',/*el属性代表了vue的作用范围 尽在div的id为app中才生效*/
+            data : {    /*data属性用来给vue实例绑定数据 之后可以用{{}}取出*/
+                message:"<a href='#'>123123</a>",
+                username:"vue2.0",
+                user:{name:"susu", pwd:"123"},
+                list:["1", "2", "3"],
+                users:[{name:"su", age:20},{name:"shu",age:13}]
+            }
+        })
+    </script>
+</body>
+</html>
