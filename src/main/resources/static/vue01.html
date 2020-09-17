@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue01</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}  {{username}}
+        <br>
+        <span>
+            {{user.name}}    {{user.pwd}} <br>
+            {{list}}   {{list[1]}}<br>
+            {{users}} {{users[1].age}}      <!--使用{{}}取值时，内部可以用表达式-->
+        </span>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el : '#app',/*el属性代表了vue的作用范围 尽在div的id为app中才生效*/
+            data : {    /*data属性用来给vue实例绑定数据 之后可以用{{}}取出*/
+                message:'hello vue',
+                username:"vue2.0",
+                user:{name:"susu", pwd:"123"},
+                list:["1", "2", "3"],
+                users:[{name:"su", age:20},{name:"shu",age:13}]
+            }
+        })
+    </script>
+</body>
+</html>
