@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue01</title>
+
+    <style>
+        .aa{
+            border: 2px red solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--v-bind绑定标签，动态添加属性-->
+        <!--<a v-bind:href="url">百度</a>-->
+        <img :title="msg" :src="imgurl"/><br>
+
+
+        <input value="change" type="button" @click="change">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el : '#app',/*el属性代表了vue的作用范围 尽在div的id为app中才生效*/
+            data : {    /*data属性用来给vue实例绑定数据 之后可以用{{}}取出*/
+                msg:"nihao",
+                url:"https://www.baidu.com",
+                imgurl:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600420031931&di=6f30dbdd66b68ee3ec12e442ba387329&imgtype=0&src=http%3A%2F%2Fimage.biaobaiju.com%2Fuploads%2F20190508%2F18%2F1557310011-uVcARelNib.jpg",
+                showcss:true
+            },
+            methods:{
+                change(){
+                    this.imgurl = "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3687494049,2141480074&fm=26&gp=0.jpg";
+                }
+            }
+        })
+    </script>
+</body>
+</html>

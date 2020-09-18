@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue01</title>
+
+    <style>
+        .aa{
+            border: 2px red solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg"><input type="button" value="add" @click="save"><br>
+        <ul>
+            <li v-for="item,index in list">
+                {{index+1}}{{item}}<a href="javascript:;" @click="deleteRow(index)">delete</a>
+            </li>
+        </ul>
+        <br>
+        <span>总数量：{{list.length}}</span><br>
+        <input type="button" value="deleteAll" v-show="list.length != 0" @click="deleteAll">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                list:["一","二","三"],
+                msg:""
+            },
+            methods:{
+                save(){
+                    this.list.push(this.msg);
+                    this.msg = "";
+                },
+                deleteRow(index){
+                    this.list.splice(index,1); /*参数1 代表从哪个下标开始删除    参数二 删除几个元素*/
+                },
+                deleteAll(){
+                    this.list.splice(0,this.list.length);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
