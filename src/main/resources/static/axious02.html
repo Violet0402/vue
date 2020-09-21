@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function findAll(){
+            return axios.get("http://localhost:8080/user/findAll?username=shushu");
+        }
+        function save(){
+            return axios.post("http://localhost:8080/user/save",{
+                username:"susu",
+                age:80
+            })
+        }
+        //并发运行
+        axios.all([findAll(), save()]).then(axios.spread(function (res1,res2) { //汇总处理
+            console.log(res1.data);
+            console.log(res2.data);
+        }));
+        const app = new Vue({
+            el:"#app",
+            data:{},
+            methods:{}
+        });
+    </script>
+</body>
+</html>

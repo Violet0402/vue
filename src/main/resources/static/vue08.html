@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue01</title>
+
+    <style>
+        .aa{
+            background: red;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <!--
+
+    .stop
+    .prevent
+    .capture
+    .self
+    .once
+    .passive
+-->
+    <!--self只触发自己的事件-->
+    <div id="app">
+        <div class="aa" @click.self="divClick">
+            <input type="button" @click="btnClick" value="button">
+            <!--点击div触发，点击btn也触发，这叫做事件冒泡，要组织的话得加上一个stop-->
+            <!--prevent用来阻止标签得默认行为--><br>
+
+        </div>
+        <!--once 事件只执行一次-->
+        <a href="www.baidu.com" @click.prevent.once="change">你好</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                list:["一","二","三"],
+                msg:""
+            },
+            methods:{
+                divClick(){
+                    alert("div被点击了");
+                },
+                btnClick(){
+                    alert("btn被点击了");
+                },
+                change(){
+                    alert("你好");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

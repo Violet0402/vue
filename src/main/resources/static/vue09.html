@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue01</title>
+
+    <style>
+        .aa{
+            background: red;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <!--
+    .enter
+    .tab
+    .delete (捕获“删除”和“退格”键)
+    .esc
+    .space
+    .up
+    .down
+    .left
+    .right
+-->
+    <div id="app">
+        <input type="text" v-model="msg" @keyup.enter="keyups">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                list:["一","二","三"],
+                msg:""
+            },
+            methods:{
+                keyups(){
+                    alert(this.msg);
+                    msg="";
+                }
+            }
+        })
+    </script>
+</body>
+</html>
