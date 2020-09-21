@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--使用全局组件-->
+    <div id="app">
+        <login2 name="susu"></login2><br>
+        <login2 :uname="username"></login2>
+    </div>
+
+    <template id="loginTemplate">
+        <div>
+            <h1>用户登录{{name}},,{{uname}}</h1>
+        </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        /*全局组件注册 参数一：组件名称   参数二：组件配置对象：template:用来书写html代码，在template中必须存在一个容器*/
+        Vue.component("login",{
+            template:"<div><h1>用户登录</h1></div>>"
+        });
+        /*局部组件登录模板*/
+        let login = {
+            template: "#loginTemplate",
+            props:["name","uname"]
+        };
+        const app = new Vue({
+            el:"#app",
+            data:{
+                username:"shushu"
+            },
+            methods:{},
+            components:{  /*注册局部组件*/
+                login2:login
+            }
+        });
+    </script>
+</body>
+</html>

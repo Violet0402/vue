@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--使用全局组件-->
+    <div id="app">
+        <login2></login2>
+    </div>
+
+    <template id="loginTemplate">
+        <div>
+            <h1>用户登录{{msg}}</h1><br>
+            <ul>
+                <li v-for="item,index in lists">
+                    {{index}} &nbsp; {{item}}
+                </li>
+            </ul>
+        </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        /*局部组件登录模板*/
+        let login = {
+            template: "#loginTemplate",
+            data(){
+                return{
+                    msg:"你好",
+                    lists:["java","spring","springboot"]  /*属于组件的数据*/
+                };
+            }
+        };
+        const app = new Vue({
+            el:"#app",
+            data:{
+                username:"shushu"
+            },
+            methods:{},
+            components:{  /*注册局部组件*/
+                login2:login
+            }
+        });
+    </script>
+</body>
+</html>
