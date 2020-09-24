@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+        <router-link to="/product">商品管理</router-link>
+        <router-view></router-view>
+    </div>
+
+    <template id="product">
+        <div>
+            <h1>商品管理</h1><br>
+            <router-link to="/product/edit">商品编辑</router-link>
+            <router-link to="/product/add">商品添加</router-link>
+            <router-view></router-view>
+        </div>
+    </template>
+
+    <script src="../template/vue.js"></script>
+    <script src="../template/vue-router.js"></script>
+    <script src="../template/axios.min.js"></script>
+    <script>
+        const product = {
+            template:"#product"
+        };
+        const edit = {
+            template:"<h2>商品编辑</h2>>"
+        };
+        const add = {
+            template:"<h2>商品添加</h2>"
+        };
+
+        const router = new VueRouter({
+            routes:[
+                {path:"/product", component:product,
+                    children:[
+                        {path:"/product/edit", component:edit},
+                        {path: "/product/add", component: add}
+                    ]}
+            ]
+        });
+
+        const app = new Vue({
+            el:"#app",
+            data:{},
+            methods:{},
+            component:{},
+            router:router
+        });
+
+    </script>
+</body>
+</html>

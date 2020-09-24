@@ -7,11 +7,12 @@
 <body>
 
     <div id="app">
-        <a href="#/login">登录</a>
-        <a href="#/register">注册</a>
+        <!--<a href="#/login?id=21">登录</a>
+        <a href="#/register">注册</a>-->
 
         <!--router-link在书写路由路径时不需要写#号  to用来写路径 tag将router-link渲染成其他的标签-->
-        <router-link to="/login" tag="button">router登录</router-link>
+        <router-link to="/login?name=susu">router登录</router-link>
+        <router-link to="/register/23">router注册</router-link>
         <router-view></router-view>
     </div>
 
@@ -27,17 +28,36 @@
     <script>
         /*定义组件*/
         const login = {
-            template:"<h1>登录</h1>"
+            /*传统方式的参数放在$route下的query中*/
+            template:"<h1>登录{{this.$route.query.name}}</h1>",
+            data(){
+                return{}
+            },
+            created(){
+                console.log(this.$route.query.name)
+            },
+            methods: {},
+            props:[]
         };
         const register = {
-            template: "<h1>注册</h1>"
+            template: "<h1>注册{{this.$route.params.id}}</h1>",
+            data(){
+                return{
+
+                }
+            },
+            methods:{},
+            props: [],
+            created() {
+                console.log(this.$route);
+            }
         }
 
         const router = new VueRouter({
             routes:[
-                {path:"/", /*component:login*/ redirect:"register"},
+                {path:"/", /*component:login*/ redirect:"login"},
                 {path:"/login", component: login},
-                {path:"/register", component: register}
+                {path:"/register/:id", component: register}
             ]
         });
 
